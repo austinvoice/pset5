@@ -1,0 +1,25 @@
+0. What is pneumonoultramicroscopicsilicovolcanoconiosis?
+    This is a non-word alleged to mean a lung desease caused by inhalation of fine silica dust. It causes inflammation in the lungsman 
+
+1. According to its man page, what does getrusage do?
+    This function returns resource usage measures.
+
+2. Per that same man page, how many members are in a variable of type struct rusage?
+    16
+
+3. Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+    rusage is a large struct. Passing a pointer is more efficient. Passing by reference allows global access to the value outside of the 
+    function. Otherwise you might have to create a global variable which is less preferable.
+
+4. Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+    main reads words in a file by reading each character until the end of the file. It follows each character until it reaches a NULL character. NULL indicates a new word.
+    If a word has non-alpha character, main ignores the non-alpha and sets up for a new word. 
+
+5. Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+    Reading each character at a time using fgetc allows to evaluate each character individually. This is probably faster since it finds issues quickly.
+    Using fscanf would potentially require a more elaborate process to read inside the string and reject words or result in inaccurate reads.
+
+6. Why do you think we declared the parameters for check and load as const (which means "constant")?
+   const allows variables to be shared across programs and there are multiple programs that use them. Specifically, check and load are functions shared
+   across speller.c and dictionary.c.
+
