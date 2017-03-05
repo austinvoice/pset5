@@ -141,7 +141,14 @@ bool check(const char* word)
  */
 unsigned int size(void)
 {
-    // TODO
+    // If dictionary did load, return number of words in dictionary
+    if (dictionarySize > 0)
+    {
+        return dictionarySize;
+    }
+    
+    // If dictionary didn't load, return 0
+    else
     return 0;
 }
 
@@ -150,6 +157,33 @@ unsigned int size(void)
  */
 bool unload(void)
 {
-    // TODO
-    return false;
+    // Create a variable to go through index
+    int index = 0;
+    
+    // Move through hashtable array
+    while (index < SIZE)
+    {
+        // If hashtable empty, go to next index
+        if (hashtable[index] == NULL)
+        {
+            index++;
+        }
+        
+        // If hashtable is not emppty, go through nodes and start freeing
+        else
+        {
+            while (hashtable[index] != NULL)
+            {
+                node* cursor = hashtable[index];
+                hashtable[index] = cursor->next;
+                free(cursor);
+            }
+            
+            // At empty index go to next
+            index++;
+        }
+    }
+    
+    // If success, return true
+    return true;
 }
