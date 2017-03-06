@@ -5,6 +5,7 @@
 //* Note: Hash table from Wikipedia - https://en.wikipedia.org/wiki/Hash_function
 // ***************************************************************************/
 
+// include files
 #include <stdbool.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -51,8 +52,7 @@ int hash (const char* word)
 int dictionarySize = 0;
 
 // * Loads dictionary into memory. Returns true if successful else false.
-// * Returns true if word is in dictionary else false.
- 
+
 bool load(const char* dictionary)
 {
     // Opens dictionary
@@ -169,7 +169,7 @@ bool unload(void)
             index++;
         }
         
-        // If hashtable is not emppty, go through nodes and start freeing
+        // If hashtable is not empty, go through nodes and free memory
         else
         {
             while (hashtable[index] != NULL)
@@ -184,6 +184,6 @@ bool unload(void)
         }
     }
     
-    // If success, return true
+    // If success return true
     return true;
 }
